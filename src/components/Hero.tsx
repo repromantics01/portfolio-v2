@@ -1,73 +1,173 @@
-export default function Hero() {
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+
+/* ─── SplitText: letter-by-letter reveal when in view ─────────────────── */
+function SplitText({
+  text,
+  delay = 0,
+  stagger = 28,
+}: {
+  text: string
+  delay?: number
+  stagger?: number
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisible(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true)
+          io.disconnect()
+        }
+      },
+      { threshold: 0.4 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   return (
-    <section id="home" className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-6xl items-center gap-8 px-8 md:grid-cols-[1.5fr_1fr]">
-        {" "}
-        {/* Left: text column — left edge aligns with the navbar logo */}
-        <div className="order-2 pt-4 pb-20 md:order-1 md:pt-0 md:pb-28">
-          <h1 className="font-serif font-semibold leading-[1.02] tracking-tight text-brown">
-            <span className="text-5xl md:text-6xl font-light">Hey there,</span>
-            <br />
-    
-            <span className="text-6xl md:text-[5.25rem] font-bold">
-              I&rsquo;m Pauline<span className="text-taupe">.</span>
+    <span ref={ref} className="split">
+      {[...text].map((c, i) => (
+        <span key={i} className="split-wrap">
+          <span
+            className={`split-char ${visible ? 'split-in' : ''}`}
+            style={{
+              transitionDelay: visible ? `${delay + i * stagger}ms` : '0ms',
+            }}
+          >
+            {c === ' ' ? ' ' : c}
+          </span>
+        </span>
+      ))}
+    </span>
+  )
+}
+
+/* ─── Magnetic: child eases toward the cursor on hover ────────────────── */
+function Magnetic({
+  children,
+  strength = 0.25,
+}: {
+  children: ReactNode
+  strength?: number
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const onMove = (e: React.MouseEvent<HTMLSpanElement>) => {
+    const el = ref.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const x = e.clientX - (r.left + r.width / 2)
+    const y = e.clientY - (r.top + r.height / 2)
+    el.style.transform = `translate(${x * strength}px, ${y * strength}px)`
+  }
+  const onLeave = () => {
+    const el = ref.current
+    if (el) el.style.transform = 'translate(0,0)'
+  }
+  return (
+    <span className="magnetic-wrap" onMouseMove={onMove} onMouseLeave={onLeave}>
+      <span ref={ref} className="magnetic-inner">
+        {children}
+      </span>
+    </span>
+  )
+}
+
+/* ─── LocalClock: live HH:MM:SS in Asia/Manila ────────────────────────── */
+function LocalClock() {
+  const [t, setT] = useState(() => new Date())
+  useEffect(() => {
+    const id = setInterval(() => setT(new Date()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const fmt = new Intl.DateTimeFormat('en-PH', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Manila',
+  })
+  return <span className="tabular">{fmt.format(t)}</span>
+}
+
+/* ─── Hero ────────────────────────────────────────────────────────────── */
+export default function Hero() {
+  const imgRef = useRef<HTMLDivElement>(null)
+
+  // Subtle parallax on the portrait as you scroll.
+  useEffect(() => {
+    const onScroll = () => {
+      const el = imgRef.current
+      if (!el) return
+      const y = Math.min(60, window.scrollY * 0.08)
+      el.style.transform = `translateY(${y}px)`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <section id="home" className="hero">
+      <div className="hero-grid">
+        <div className="hero-text">
+          <div className="status-pill">
+            <span className="status-dot" />
+            <span>Baybay City, PH</span>
+            <span className="status-sep">·</span>
+            <LocalClock />
+          </div>
+
+          <h1 className="hero-h1">
+            <span className="hero-greet">Hey there, I&rsquo;m</span>
+            <span className="hero-name">
+              <SplitText text="Pauline" stagger={36} />
+              <span className="hero-period">.</span>
             </span>
           </h1>
 
-          <p className="mt-7 max-w-screen text-xl leading-relaxed text-muted">
-            An aspiring software engineer who builds full-stack web applications and{" "}
-            <span className="font-medium text-brown">
-              integrates intelligent systems into real, deployed products
-            </span>
-            &mdash; comfortable across the stack, from database design to
-            frontend, with a growing focus on practical AI integration.
+          <p className="hero-lede">
+            An aspiring software engineer who builds full-stack web applications
+            and integrates intelligent systems into real, deployed products
+            &mdash; comfortable across the stack, with a focus on practical AI
+            integration.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-5">
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 rounded-lg bg-taupe-dark px-7 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-brown hover:shadow-md"
-            >
-              Contact Me
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                &rarr;
-              </span>
-            </a>
-
-            <a
-              href="#projects"
-              className="text-sm font-medium text-brown underline-offset-4 transition-colors hover:text-taupe-dark hover:underline"
-            >
-              View my work
+          <div className="hero-actions">
+            <Magnetic>
+              <a href="#projects" className="btn-primary">
+                <span>See my work</span>
+                <span className="btn-arrow" aria-hidden>
+                  →
+                </span>
+              </a>
+            </Magnetic>
+            <a href="#contact" className="btn-ghost">
+              <span>Get in touch</span>
             </a>
           </div>
         </div>
-        {/* Right: portrait — circular on mobile, tall on desktop */}
-        <div className="relative order-1 flex w-full items-center justify-center pt-8 md:order-2 md:justify-end md:pt-10">
-          <div
-            aria-hidden
-            className="absolute bottom-0 left-1/2 -z-10 hidden h-[55vh] w-[55vh] -translate-x-1/2 rounded-full bg-taupe/25 blur-2xl md:left-auto md:right-4 md:block md:translate-x-0"
-          />
 
-          {/* Mobile: centered circular portrait */}
-          <div className="mx-auto h-72 w-72 overflow-hidden rounded-full bg-taupe sm:h-80 sm:w-80 md:hidden">
-            <img
-              src="/me/me-hero.png"
-              alt="Pauline Dejos"
-              className="h-full w-full object-cover object-[center_top]"
-            />
-          </div>
-
-          {/* Desktop: tall portrait anchored to the bottom */}
-          <div className="hidden h-[clamp(50vh,65vh,90vh)] md:block">
-            <img
-              src="/me/me-hero.png"
-              alt="Pauline Dejos"
-              className="h-full w-auto object-contain object-bottom"
-            />
+        <div className="hero-portrait">
+          <div className="portrait-frame" aria-hidden />
+          <div ref={imgRef} className="portrait-img">
+            <img src="/me/me-hero.png" alt="Pauline Dejos" />
           </div>
         </div>
       </div>
+
+      <a href="#about" className="scroll-cue" aria-label="Scroll to about">
+        <span>Scroll</span>
+        <span className="scroll-line" />
+      </a>
     </section>
-  );
+  )
 }

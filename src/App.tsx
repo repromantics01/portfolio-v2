@@ -10,12 +10,8 @@ function App() {
     <div className="min-h-screen bg-cream">
       <Navbar />
       <main>
-        <Reveal>
-          <Hero />
-        </Reveal>
-        <Reveal>
-          <About />
-        </Reveal>
+        <Hero />
+        <About />
         <Reveal>
           <Projects />
         </Reveal>
