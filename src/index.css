@@ -194,6 +194,44 @@ body {
   font-family: var(--font-mono);
   font-size: 11px;
 }
+/* Eyebrow variant for dark backgrounds (e.g. footer). */
+.eyebrow--invert { color: rgba(255, 255, 255, 0.75); }
+.eyebrow--invert .eyebrow-line { background: rgba(255, 255, 255, 0.55); }
+.eyebrow--invert .eyebrow-num { color: rgba(255, 255, 255, 0.55); }
+
+/* Shared serif section heading — used by About, Projects, Footer. */
+.section-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+.section-h2 em { font-style: italic; color: var(--brown); }
+.section-h2--invert { color: #ffffff; }
+
+/* Descriptive paragraph that sits under a section-h2. */
+.section-intro {
+  max-width: 60ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+.section-intro--invert { color: rgba(255, 255, 255, 0.85); }
+
+/* Subsection label (mono small-caps) — matches .skill-cat for use elsewhere. */
+.subsection-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--taupe-dark);
+  font-weight: 500;
+}
 
 /* ─────────────────────────────────────────────────────────────────────── */
 /*  Hero                                                                    */
@@ -448,7 +486,7 @@ body {
 .about-photo-front {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 115%;
   border-radius: var(--r-lg);
   overflow: hidden;
   background: var(--taupe);
