@@ -200,17 +200,26 @@ export default function Projects() {
   return (
     <section id="projects" className="px-8 pt-12 pb-20">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-2xl font-extrabold tracking-wide text-ink">
-          PROJECTS
+        <div className="mb-6">
+          <span className="eyebrow">
+            <span className="eyebrow-line" />
+            <span>Projects</span>
+            <span className="eyebrow-num">03</span>
+          </span>
+        </div>
+
+        <h2 className="section-h2">
+          Things I&rsquo;ve <em>shipped</em>
+          <span className="block font-normal text-muted">
+            &mdash; and the ones still in motion.
+          </span>
         </h2>
-        <p className="mt-3 max-w-md text-muted">
-          A selection of work I have been involved in — from larger, notable
-          builds to smaller focused experiments.
+        <p className="section-intro">
+          A selection of work I&rsquo;ve been involved in &mdash; from larger,
+          notable builds to smaller focused experiments.
         </p>
 
-        <h3 className="mt-12 text-sm font-semibold uppercase tracking-[0.18em] text-taupe-dark">
-          Featured
-        </h3>
+        <h3 className="subsection-label mt-12">Featured</h3>
         <div className="mt-6 grid gap-8 md:grid-cols-2">
           {FEATURED.map((project, i) => (
             <article
@@ -265,9 +274,7 @@ export default function Projects() {
         </div>
 
         {/* Other / smaller projects */}
-        <h3 className="mt-16 text-sm font-semibold uppercase tracking-[0.18em] text-taupe-dark">
-          Other Projects
-        </h3>
+        <h3 className="subsection-label mt-10">Other Projects</h3>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {OTHER.map((project, i) => (
             <article

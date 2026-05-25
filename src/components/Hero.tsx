@@ -144,7 +144,7 @@ export default function Hero() {
           <div className="hero-actions">
             <Magnetic>
               <a href="#projects" className="btn-primary">
-                <span>See my work</span>
+                <span>See my works</span>
                 <span className="btn-arrow" aria-hidden>
                   →
                 </span>
@@ -159,7 +159,7 @@ export default function Hero() {
         <div className="hero-portrait">
           <div className="portrait-frame" aria-hidden />
           <div ref={imgRef} className="portrait-img">
-            <img src="/me/me-hero.png" alt="Pauline Dejos" />
+            <img src="/me/me-about.png" alt="Pauline Dejos" />
           </div>
         </div>
       </div>
