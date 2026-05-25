@@ -106,9 +106,10 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-12 px-8 pb-12 pt-20 md:grid-cols-3">
         {/* Get in Touch */}
         <div>
-          <h2 className="text-5xl font-light">Get in Touch</h2>
 
-          <p className="mt-5 leading-relaxed text-white/85">
+          <h2 className="section-h2 section-h2--invert">Get in touch.</h2>
+
+          <p className="section-intro section-intro--invert">
             Want to turn ideas into code together?
             <br />
             Let&rsquo;s connect and make it happen!

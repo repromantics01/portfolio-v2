@@ -56,7 +56,7 @@ export default function About() {
           <div className="about-photo-stack">
             <div className="about-photo-back" aria-hidden />
             <div className="about-photo-front">
-              <img src="/me/me-about.png" alt="Pauline Dejos" />
+              <img src="/me/me-hero.png" alt="Pauline Dejos" />
             </div>
           </div>
           <div className="about-photo-caption">
@@ -68,20 +68,12 @@ export default function About() {
 
         <Reveal delay={120}>
           <h2 className="about-h2">
-            I take ideas from <em>mockup</em> to <em>deployment</em>{' '}
-            <span className="about-h2-em">
-              &mdash; and own the messy middle.
-            </span>
+            I take ideas from <em>concept</em> to <em>production</em>{' '}
           </h2>
           <div className="about-body">
             {BIO.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
-          </div>
-
-          <div className="about-signature">
-            <span className="sig-line" />
-            <span className="sig-text">— Pauline, writing from VSU</span>
           </div>
         </Reveal>
       </div>
