@@ -135,16 +135,16 @@ export const OTHER: Project[] = [
   },
   {
     title: "ViscAnonymous",
-    description: "An anonymous note-sharing website for Viscans.",
+    description: "An anonymous note-sharing website for Viscans. Another focused experiment in frontend development and design.",
     highlights: [
       "Anonymous note-sharing platform built for the Viscan community",
     ],
-    tags: ["React", "Tailwind"],
+    tags: ["Vanilla JS", "HTML/CSS3"],
     liveUrl: "https://cloud-app-silkx.vercel.app/",
   },
   {
     title: "Weather Website",
-    description: "A focused tool or experiment. One or two sentences.",
+    description: "A focused tool or experiment with weather data using external APIs.",
     highlights: ["A small weather lookup web app."],
     tags: ["Node.js"],
     liveUrl: "weather-website-blue-delta.vercel.app",
