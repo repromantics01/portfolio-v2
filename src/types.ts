@@ -4,7 +4,9 @@ export type Project = {
   highlights: string[];
   tags: string[];
   image?: string;
-  gallery?: string[];
+  // Ordered screenshots shown in the dialog gallery.
+  // Convention: public/projects/<slug>/01.png, 02.png, …
+  screenshots?: string[];
   liveUrl?: string;
   codeUrl?: string;
 };

@@ -160,7 +160,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#786865] transition-transform hover:scale-110"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-card text-[#786865] dark:text-[#cc9a5e] transition-transform hover:scale-110"
               >
                 {s.icon}
               </a>
