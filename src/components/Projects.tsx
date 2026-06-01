@@ -21,7 +21,7 @@ function BrowserChrome({ url }: { url?: string }) {
         <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
         <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
       </div>
-      <div className="flex flex-1 min-w-0 items-center rounded bg-white/60 border border-brown/10 px-2 py-0.5">
+      <div className="flex flex-1 min-w-0 items-center rounded bg-white/60 dark:bg-white/8 border border-brown/10 px-2 py-0.5">
         <span className="truncate text-[10px] text-muted/70">
           {hostname ?? "preview"}
         </span>
@@ -316,7 +316,7 @@ function FeaturedCarousel({
         type="button"
         onClick={prev}
         aria-label="Previous project"
-        className="absolute left-6 top-52.5 md:top-85 z-20 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-brown/12 bg-white/90 text-xl text-brown shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white hover:shadow-lg"
+        className="absolute left-6 top-52.5 md:top-85 z-20 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-brown/12 bg-white/90 dark:bg-card/90 text-xl text-brown shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white dark:hover:bg-card hover:shadow-lg"
       >
         ‹
       </button>
@@ -324,7 +324,7 @@ function FeaturedCarousel({
         type="button"
         onClick={next}
         aria-label="Next project"
-        className="absolute right-6 top-52.5 md:top-85 z-20 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-brown/12 bg-white/90 text-xl text-brown shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white hover:shadow-lg"
+        className="absolute right-6 top-52.5 md:top-85 z-20 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-brown/12 bg-white/90 dark:bg-card/90 text-xl text-brown shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white dark:hover:bg-card hover:shadow-lg"
       >
         ›
       </button>
@@ -478,7 +478,7 @@ function ProjectDialog({
         </div>
 
         {/* ── right: text details ── */}
-        <div className="flex flex-1 flex-col overflow-y-auto border-t md:border-t-0 md:border-l border-brown/10 bg-white p-5 md:p-8">
+        <div className="flex flex-1 flex-col overflow-y-auto border-t md:border-t-0 md:border-l border-brown/10 bg-card p-5 md:p-8">
           <h3 className="pr-8 font-serif text-2xl font-bold text-brown">
             {project.title}
           </h3>
@@ -567,7 +567,7 @@ export default function Projects() {
                   setActive(project);
                 }
               }}
-              className="flex cursor-pointer flex-col rounded-2xl border border-brown/10 bg-white p-6 transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brown/40"
+              className="flex cursor-pointer flex-col rounded-2xl border border-brown/10 bg-card p-6 transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brown/40"
             >
               <h4 className="text-lg font-bold text-brown">{project.title}</h4>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
