@@ -626,3 +626,9 @@ body {
   background: var(--accent);
 }
 .skill-list li:hover { transform: translateX(2px); }
+
+ /* for carousel project titles */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
